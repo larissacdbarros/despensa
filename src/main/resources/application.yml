@@ -1,0 +1,14 @@
+server:
+  servlet:
+    context-path: /despensaapi
+    encoding:
+      force: true
+      enabled: true
+      charset: utf-8
+
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/despensa_db
+    driver-class-name: org.postgresql.Driver
+    username: larissa
+    password: '020197'
