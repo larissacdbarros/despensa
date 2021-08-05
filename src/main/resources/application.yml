@@ -12,3 +12,11 @@ spring:
     driver-class-name: org.postgresql.Driver
     username: larissa
     password: '020197'
+
+  jpa:
+    hibernate:
+      ddl-auto: create
+
+
+
+
