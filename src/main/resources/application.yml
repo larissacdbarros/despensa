@@ -5,6 +5,7 @@ server:
       force: true
       enabled: true
       charset: utf-8
+  port: 8081
 
 spring:
   datasource:
@@ -15,7 +16,8 @@ spring:
 
   jpa:
     hibernate:
-      ddl-auto: create
+      ddl-auto: update
+
 
 
 
