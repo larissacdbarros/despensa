@@ -16,7 +16,7 @@ public class ListaCompras {
 
     @Id
     @Column(name = "ID")
-    public Long id;
+    private Long id;
 
     @ManyToMany
     @JoinTable(name = "RL_LISTA_COMP_CTRL_ALIMENTOS",

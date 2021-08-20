@@ -15,7 +15,7 @@ import java.util.List;
 public class ControleAlimento {
     @Id
     @Column (name = "ID")
-    public Long id;
+    private Long id;
 
     @OneToOne
     @JoinColumn (name = "ID_ALIMENTO")
