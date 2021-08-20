@@ -16,11 +16,11 @@ public class ControleAlimentoValidade {
 
     @Id
     @Column (name = "ID")
-    public Long id;
+    private Long id;
 
     @ManyToOne
     @JoinColumn(name = "ID_CONTROLE_ALIMENTOS") // coloca aqui tambem?
-    public ControleAlimento controleAlimento;
+    private ControleAlimento controleAlimento;
 
     @Column (name = "DATA_DE_VALIDADE")
     private String dataValidade;
