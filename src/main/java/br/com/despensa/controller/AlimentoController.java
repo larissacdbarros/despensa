@@ -1,30 +1,52 @@
 package br.com.despensa.controller;
 
-import br.com.despensa.model.entity.Alimento;
+
+import br.com.despensa.model.dto.AlimentoDTO;
 import br.com.despensa.service.AlimentoService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
 @RequestMapping(path = "/alimentos") //padrao de endpoints é no plural
-public class AlimentoController {
-    AlimentoService alimentoService;
+@RequiredArgsConstructor //os atributos precisam ser private e final
 
-    public AlimentoController(AlimentoService alimentoService) {
-        this.alimentoService = alimentoService;
-    }
+public class AlimentoController {
+
+    private final AlimentoService alimentoService;
+
 
     @GetMapping
-    public ResponseEntity<List<Alimento>> getAlimentos() {
-        List<Alimento> listaAlimentos =  this.alimentoService.getAlimentos();
+    public ResponseEntity<List<AlimentoDTO>> getAll() {
+        List<AlimentoDTO> listaAlimentos = this.alimentoService.getAll();
         return ResponseEntity.ok(listaAlimentos);
     }
 
+    @GetMapping(value = "/{id}")
+    public ResponseEntity<AlimentoDTO> getById(@PathVariable("id") Long id) {
+        AlimentoDTO result = this.alimentoService.getById(id);
+        return ResponseEntity.ok(result);
+    }
+
+    @PostMapping
+    public ResponseEntity<AlimentoDTO> save(@RequestBody AlimentoDTO alimentoDTO) {
+        AlimentoDTO result = this.alimentoService.save(alimentoDTO);
+        return ResponseEntity.ok(result);
+    }
+
+    @PutMapping(value = "/{id}")
+    public ResponseEntity<AlimentoDTO> update(@PathVariable("id") Long id, @RequestBody AlimentoDTO alimentoDTO) {
+        AlimentoDTO result = this.alimentoService.update(id, alimentoDTO);
+        return ResponseEntity.ok(result);
+    }
+
+    @DeleteMapping(path = "/{id}")
+    public ResponseEntity<Void> delete(@PathVariable Long id) {
+        this.alimentoService.delete(id);
+        return ResponseEntity.ok().build();
+    }
 
 
 }

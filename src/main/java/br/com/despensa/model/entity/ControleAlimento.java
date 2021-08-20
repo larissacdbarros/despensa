@@ -1,10 +1,17 @@
 package br.com.despensa.model.entity;
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
 import javax.persistence.*;
 import java.util.List;
 
 @Entity
 @Table(name = "TB_CONTROLE_ALIMENTOS", schema = "DESPENSA")
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
 public class ControleAlimento {
     @Id
     @Column (name = "ID")
@@ -14,7 +21,7 @@ public class ControleAlimento {
     @JoinColumn (name = "ID_ALIMENTO")
     private Alimento alimento;
 
-    @OneToMany
+    @OneToMany(mappedBy = "controleAlimento", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<ControleAlimentoValidade> controlesAlimentoValidade;
 
     @Column(name = "QUANTIDADE_MINIMA")

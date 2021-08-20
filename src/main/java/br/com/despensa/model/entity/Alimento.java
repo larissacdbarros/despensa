@@ -1,47 +1,34 @@
 package br.com.despensa.model.entity;
 
 
-import org.springframework.context.annotation.EnableMBeanExport;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
 @Table(name = "TB_ALIMENTOS", schema = "DESPENSA")
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
 public class Alimento {
-    @Id
-    @Column (name = "ID")
-    public Long id;
 
-    @Column (name = "NOME")
+    @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq_alimento")
+    @SequenceGenerator(name = "seq_alimento", sequenceName = "seq_alimento")
+    @Column(name = "ID")
+    private Long id;
+
+    @Column(name = "NOME")
     private String nome;
 
-    @Column (name = "GRAMATURA")
+    @Column(name = "GRAMATURA")
     private Double gramatura;
 
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getNome() {
-        return nome;
-    }
-
-    public void setNome(String nome) {
+    public Alimento (String nome, Double gramatura){
         this.nome = nome;
-    }
-
-    public Double getGramatura() {
-        return gramatura;
-    }
-
-    public void setGramatura(Double gramatura) {
         this.gramatura = gramatura;
     }
+
 }
