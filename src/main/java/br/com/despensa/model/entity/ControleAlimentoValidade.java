@@ -16,8 +16,8 @@ public class ControleAlimentoValidade {
 
     @Id
     @Column (name = "ID")
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq_controle_alimento_validade")
-    @SequenceGenerator(name = "seq_controle_alimento_validade", sequenceName = "seq_controle_alimento_validade")
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq_controleAlimentoValidade")
+    @SequenceGenerator(name = "seq_controleAlimentoValidade", sequenceName = "seq_controleAlimentoValidade")
     private Long id;
 
     @ManyToOne
