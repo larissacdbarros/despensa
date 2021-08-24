@@ -15,6 +15,8 @@ import java.util.List;
 public class ControleAlimento {
     @Id
     @Column (name = "ID")
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq_controle_alimento")
+    @SequenceGenerator(name = "seq_controle_alimento", sequenceName = "seq_controle_alimento")
     private Long id;
 
     @OneToOne

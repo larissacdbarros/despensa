@@ -16,6 +16,8 @@ public class ListaCompras {
 
     @Id
     @Column(name = "ID")
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq_lista_compras")
+    @SequenceGenerator(name = "seq_lista_compras", sequenceName = "seq_lista_compras")
     private Long id;
 
     @ManyToMany
