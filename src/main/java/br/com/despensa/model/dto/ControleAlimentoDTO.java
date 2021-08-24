@@ -13,8 +13,8 @@ import java.util.List;
 @NoArgsConstructor
 public class ControleAlimentoDTO {
     private Long id;
-    private Alimento alimento;
-    private List<ControleAlimentoValidade> controlesAlimentoValidade;
+    private AlimentoDTO alimento;
+    private List<ControleAlimentoValidadeDTO> controlesAlimentoValidade;
     private Double quantidadeMinima;
     private Double quantidadeIdeal;
     private Double quantidadeAtual;
