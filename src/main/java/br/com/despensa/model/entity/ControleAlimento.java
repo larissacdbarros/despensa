@@ -16,12 +16,12 @@ public class ControleAlimento {
 
     @Id
     @Column (name = "ID")
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq_alimento")
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq_controleAlimento")
     @SequenceGenerator(name = "seq_controleAlimento", sequenceName = "seq_controleAlimento")
     private Long id;
 
-    @OneToOne
-    @JoinColumn (name = "ID_ALIMENTO")
+    @OneToOne(fetch = FetchType.EAGER)
+    @JoinColumn (name = "ID_ALIMENTO", referencedColumnName = "ID")
     private Alimento alimento;
 
     @OneToMany(mappedBy = "controleAlimento", cascade = CascadeType.ALL)

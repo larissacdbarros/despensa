@@ -14,9 +14,13 @@ spring:
     username: larissa
     password: '020197'
 
+
   jpa:
     hibernate:
       ddl-auto: create
+    show-sql: true
+    generate-ddl: true
+
 
 
 
