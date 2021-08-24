@@ -26,9 +26,4 @@ public class Alimento {
     @Column(name = "GRAMATURA")
     private Double gramatura;
 
-    public Alimento (String nome, Double gramatura){
-        this.nome = nome;
-        this.gramatura = gramatura;
-    }
-
 }
