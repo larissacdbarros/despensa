@@ -20,6 +20,9 @@ public class Alimento {
     @Column(name = "ID")
     private Long id;
 
+    @OneToOne(mappedBy = "alimento")
+    private ControleAlimento controleAlimento;
+
     @Column(name = "NOME")
     private String nome;
 

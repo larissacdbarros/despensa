@@ -20,7 +20,7 @@ public class ControleAlimento {
     @SequenceGenerator(name = "seq_controleAlimento", sequenceName = "seq_controleAlimento")
     private Long id;
 
-    @OneToOne(fetch = FetchType.EAGER)
+    @OneToOne
     @JoinColumn (name = "ID_ALIMENTO", referencedColumnName = "ID")
     private Alimento alimento;
 

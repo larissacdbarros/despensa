@@ -1,7 +1,5 @@
 package br.com.despensa.model.dto;
 
-import br.com.despensa.model.entity.Alimento;
-import br.com.despensa.model.entity.ControleAlimentoValidade;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
