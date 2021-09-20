@@ -8,6 +8,7 @@ import br.com.despensa.model.entity.ControleAlimento;
 import br.com.despensa.repository.ControleAlimentoRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
@@ -33,6 +34,7 @@ public class ControleAlimentoService {
         }
     }
 
+    @Transactional
     public ControleAlimentoDTO save(ControleAlimentoDTO controleAlimentoDTO) {
         ControleAlimento controleAlimento = this.controleAlimentoMapper.toEntity(controleAlimentoDTO);
         controleAlimento = this.controleAlimentoRepository.save(controleAlimento);
