@@ -16,11 +16,13 @@ public class ControleAlimentoValidade {
 
     @Id
     @Column (name = "ID")
-    public Long id;
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq_controleAlimentoValidade")
+    @SequenceGenerator(name = "seq_controleAlimentoValidade", sequenceName = "seq_controleAlimentoValidade")
+    private Long id;
 
     @ManyToOne
     @JoinColumn(name = "ID_CONTROLE_ALIMENTOS") // coloca aqui tambem?
-    public ControleAlimento controleAlimento;
+    private ControleAlimento controleAlimento;
 
     @Column (name = "DATA_DE_VALIDADE")
     private String dataValidade;

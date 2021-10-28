@@ -13,15 +13,18 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 public class ControleAlimento {
+
     @Id
     @Column (name = "ID")
-    public Long id;
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq_controleAlimento")
+    @SequenceGenerator(name = "seq_controleAlimento", sequenceName = "seq_controleAlimento")
+    private Long id;
 
     @OneToOne
-    @JoinColumn (name = "ID_ALIMENTO")
+    @JoinColumn (name = "ID_ALIMENTO", referencedColumnName = "ID")
     private Alimento alimento;
 
-    @OneToMany(mappedBy = "controleAlimento", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "controleAlimento", cascade = CascadeType.ALL)
     private List<ControleAlimentoValidade> controlesAlimentoValidade;
 
     @Column(name = "QUANTIDADE_MINIMA")
@@ -32,6 +35,5 @@ public class ControleAlimento {
 
     @Column(name = "QUANTIDADE_ATUAL")
     private Double quantidadeAtual;
-
 
 }

@@ -20,15 +20,13 @@ public class Alimento {
     @Column(name = "ID")
     private Long id;
 
+    @OneToOne(mappedBy = "alimento")
+    private ControleAlimento controleAlimento;
+
     @Column(name = "NOME")
     private String nome;
 
     @Column(name = "GRAMATURA")
     private Double gramatura;
-
-    public Alimento (String nome, Double gramatura){
-        this.nome = nome;
-        this.gramatura = gramatura;
-    }
 
 }

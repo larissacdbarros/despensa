@@ -16,7 +16,9 @@ public class ListaCompras {
 
     @Id
     @Column(name = "ID")
-    public Long id;
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq_listaCompras")
+    @SequenceGenerator(name = "seq_listaCompras", sequenceName = "seq_listaCompras")
+    private Long id;
 
     @ManyToMany
     @JoinTable(name = "RL_LISTA_COMP_CTRL_ALIMENTOS",
