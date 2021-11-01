@@ -29,4 +29,5 @@ public class Alimento {
     @Column(name = "GRAMATURA")
     private Double gramatura;
 
+
 }

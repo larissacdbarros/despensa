@@ -12,10 +12,10 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @ApiModel(value = "ControleAlimentoValidadeDTO", description = "Contém a data de validade de um alimento.")
-public class ControleAlimentoValidadeDTO {
+public class ControleAlimentoValidadeReqDTO {
 
-    @ApiModelProperty(value = "Id do controle alimento validade.")
-    private Long id;
+//    @ApiModelProperty(value = "Id do controle alimento validade.")
+//    private Long id;
 
     @ApiModelProperty(value = "Alimento.")
     private ControleAlimento controleAlimento;
