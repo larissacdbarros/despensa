@@ -1,15 +1,12 @@
 package br.com.despensa.controller;
 
-import br.com.despensa.model.dto.ControleAlimentoDTO;
-import br.com.despensa.model.dto.ControleAlimentoValidadeDTO;
-import br.com.despensa.model.entity.ControleAlimentoValidade;
+import br.com.despensa.model.dto.ControleAlimentoValidadeReqDTO;
+import br.com.despensa.model.dto.ControleAlimentoValidadeRespDTO;
 import br.com.despensa.service.ControleAlimentoValidadeService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
-import lombok.AllArgsConstructor;
 import lombok.RequiredArgsConstructor;
-import org.springframework.http.RequestEntity;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -26,30 +23,30 @@ public class ControleAlimentoValidadeController {
 
     @GetMapping
     @ApiOperation(value = "Pega todos os Controles de Alimentos Validade.")
-    public ResponseEntity<List<ControleAlimentoValidadeDTO>> getAll(){
-        List<ControleAlimentoValidadeDTO> controleAlimentoValidadeDTOList = this.controleAlimentoValidadeService.getAll();
+    public ResponseEntity<List<ControleAlimentoValidadeRespDTO>> getAll(){
+        List<ControleAlimentoValidadeRespDTO> controleAlimentoValidadeDTOList = this.controleAlimentoValidadeService.getAll();
         return ResponseEntity.ok(controleAlimentoValidadeDTOList);
     }
 
     @GetMapping(value = "{/id}")
     @ApiOperation(value = "Pega um Controle de Alimento Validade pelo Id")
-    public ResponseEntity<ControleAlimentoValidadeDTO> getById(@ApiParam(name = "Id", required = true)@PathVariable Long id){
-        ControleAlimentoValidadeDTO result = this.controleAlimentoValidadeService.getById(id);
+    public ResponseEntity<ControleAlimentoValidadeRespDTO> getById(@ApiParam(name = "Id", required = true)@PathVariable Long id){
+        ControleAlimentoValidadeRespDTO result = this.controleAlimentoValidadeService.getById(id);
         return ResponseEntity.ok(result);
     }
 
     @PostMapping
     @ApiOperation(value = "Salva um Controle de Alimento Validade")
-    public ResponseEntity<ControleAlimentoValidadeDTO> save (@ApiParam(name = "ControleAlimentoValidadeDTO", required = true)@RequestBody ControleAlimentoValidadeDTO controleAlimentoValidadeDTO){
-        ControleAlimentoValidadeDTO result = this.controleAlimentoValidadeService.save(controleAlimentoValidadeDTO);
+    public ResponseEntity<ControleAlimentoValidadeRespDTO> save (@ApiParam(name = "ControleAlimentoValidadeDTO", required = true)@RequestBody ControleAlimentoValidadeReqDTO controleAlimentoValidadeReqDTO){
+        ControleAlimentoValidadeRespDTO result = this.controleAlimentoValidadeService.save(controleAlimentoValidadeReqDTO);
         return ResponseEntity.ok(result);
 
     }
 
     @PutMapping(value = "/{id}")
     @ApiOperation(value = "Atualiza um Controle Alimento Validade")
-   public ResponseEntity<ControleAlimentoValidadeDTO> update(@ApiParam(name = "ControleAlimentoValidadeDTO", required = true)@PathVariable Long id, @RequestBody ControleAlimentoValidadeDTO controleAlimentoValidadeDTO){
-        ControleAlimentoValidadeDTO result =  this.controleAlimentoValidadeService.update(id, controleAlimentoValidadeDTO);
+   public ResponseEntity<ControleAlimentoValidadeRespDTO> update(@ApiParam(name = "ControleAlimentoValidadeDTO", required = true)@PathVariable Long id, @RequestBody ControleAlimentoValidadeReqDTO controleAlimentoValidadeReqDTO){
+        ControleAlimentoValidadeRespDTO result =  this.controleAlimentoValidadeService.update(id, controleAlimentoValidadeReqDTO);
         return ResponseEntity.ok(result);
     }
 

@@ -1,12 +1,11 @@
 package br.com.despensa.controller;
 
-import br.com.despensa.model.dto.ListaComprasDTO;
-import br.com.despensa.model.entity.ListaCompras;
+import br.com.despensa.model.dto.ListaComprasReqDTO;
+import br.com.despensa.model.dto.ListaComprasRespDTO;
 import br.com.despensa.service.ListaComprasService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
-import lombok.AllArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -24,29 +23,29 @@ public class ListaComprasController {
 
     @GetMapping
     @ApiOperation(value = "Pega todas as Listas de Compras.")
-    public ResponseEntity<List<ListaComprasDTO>> getAll(){
-        List<ListaComprasDTO> result  = this.listaComprasService.getAll();
+    public ResponseEntity<List<ListaComprasRespDTO>> getAll(){
+        List<ListaComprasRespDTO> result  = this.listaComprasService.getAll();
         return ResponseEntity.ok(result);
     }
 
     @GetMapping(value = "/{id}")
     @ApiOperation(value = "Pega uma Lista de Compras pelo Id.")
-    public ResponseEntity<ListaComprasDTO> getById(@ApiParam(name = "Id", required = true)@PathVariable Long id){
-       ListaComprasDTO result = this.listaComprasService.getById(id);
+    public ResponseEntity<ListaComprasRespDTO> getById(@ApiParam(name = "Id", required = true)@PathVariable Long id){
+       ListaComprasRespDTO result = this.listaComprasService.getById(id);
        return ResponseEntity.ok(result);
     }
 
     @PostMapping
     @ApiOperation(value = "Salva uma Lista de Compras.")
-    public ResponseEntity<ListaComprasDTO> save(@ApiParam(name = "ListaComprasDTO", required = true)@RequestBody ListaComprasDTO listaComprasDTO){
-        ListaComprasDTO result = this.listaComprasService.save(listaComprasDTO);
+    public ResponseEntity<ListaComprasRespDTO> save(@ApiParam(name = "ListaComprasDTO", required = true)@RequestBody ListaComprasReqDTO listaComprasReqDTO){
+        ListaComprasRespDTO result = this.listaComprasService.save(listaComprasReqDTO);
         return ResponseEntity.ok(result);
     }
     
     @PutMapping(value = "/{id}")
     @ApiOperation(value = "Atualiza uma Lista de Compras.")
-    public  ResponseEntity<ListaComprasDTO> update(@ApiParam(name = "ListaComprasDTO", required = true)@PathVariable Long id, @RequestBody ListaComprasDTO listaComprasDTO){
-        ListaComprasDTO result = this.listaComprasService.update(id, listaComprasDTO);
+    public  ResponseEntity<ListaComprasRespDTO> update(@ApiParam(name = "ListaComprasDTO", required = true)@PathVariable Long id, @RequestBody ListaComprasReqDTO listaComprasReqDTO){
+        ListaComprasRespDTO result = this.listaComprasService.update(id, listaComprasReqDTO);
         return ResponseEntity.ok(result);
     }
 

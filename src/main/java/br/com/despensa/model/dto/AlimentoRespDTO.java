@@ -7,7 +7,7 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class AlimentoDTO {
+public class AlimentoRespDTO {
     private Long id;
     private String nome;
     private Double gramatura;
