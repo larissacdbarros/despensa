@@ -1,5 +1,6 @@
 package br.com.despensa.model.entity;
 
+import br.com.despensa.utils.Constants;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -8,32 +9,31 @@ import javax.persistence.*;
 import java.util.List;
 
 @Entity
-@Table(name = "TB_CONTROLE_ALIMENTOS", schema = "DESPENSA")
+@Table(name = "TB_CONTROLE_ALIMENTO", schema = Constants.SCHEMA)
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 public class ControleAlimento {
 
     @Id
-    @Column (name = "ID")
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq_controleAlimento")
-    @SequenceGenerator(name = "seq_controleAlimento", sequenceName = "seq_controleAlimento")
+    @Column (name = "ID_CONTROLE_ALIMENTO")
+    @GeneratedValue(strategy = GenerationType.IDENTITY) // DIZ QUE É O BANCO QUEM VAI GERAR
     private Long id;
 
     @OneToOne
-    @JoinColumn (name = "ID_ALIMENTO", referencedColumnName = "ID")
+    @JoinColumn (name = "ID_ALIMENTO")
     private Alimento alimento;
 
     @OneToMany(mappedBy = "controleAlimento", cascade = CascadeType.ALL)
     private List<ControleAlimentoValidade> controlesAlimentoValidade;
 
-    @Column(name = "QUANTIDADE_MINIMA")
+    @Column(name = "QTD_QUANTIDADE_MINIMA")
     private Double quantidadeMinima;
 
-    @Column (name = "QUANTIDADE_IDEAL")
+    @Column (name = "QTD_QUANTIDADE_IDEAL")
     private Double quantidadeIdeal;
 
-    @Column(name = "QUANTIDADE_ATUAL")
+    @Column(name = "QTD_QUANTIDADE_ATUAL")
     private Double quantidadeAtual;
 
 }

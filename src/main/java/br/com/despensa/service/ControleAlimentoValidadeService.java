@@ -1,7 +1,8 @@
 package br.com.despensa.service;
 
 import br.com.despensa.mapper.ControleAlimentoValidadeMapper;
-import br.com.despensa.model.dto.ControleAlimentoValidadeDTO;
+import br.com.despensa.model.dto.ControleAlimentoValidadeReqDTO;
+import br.com.despensa.model.dto.ControleAlimentoValidadeRespDTO;
 import br.com.despensa.model.entity.ControleAlimentoValidade;
 import br.com.despensa.repository.ControleAlimentoValidadeRepository;
 import lombok.RequiredArgsConstructor;
@@ -18,32 +19,32 @@ public class ControleAlimentoValidadeService {
     private final ControleAlimentoValidadeMapper controleAlimentoValidadeMapper;
 
 
-    public List<ControleAlimentoValidadeDTO> getAll() {
+    public List<ControleAlimentoValidadeRespDTO> getAll() {
         List<ControleAlimentoValidade> controleAlimentoValidadeList = this.controleAlimentoValidadeRepository.findAll();
-        return this.controleAlimentoValidadeMapper.toDTO(controleAlimentoValidadeList);
+        return this.controleAlimentoValidadeMapper.toDto(controleAlimentoValidadeList);
     }
 
-    public ControleAlimentoValidadeDTO getById(Long id){
+    public ControleAlimentoValidadeRespDTO getById(Long id){
         Optional<ControleAlimentoValidade> result = this.controleAlimentoValidadeRepository.findById(id);
         if (result.isPresent()){
-            return this.controleAlimentoValidadeMapper.toDTO(result.get());
+            return this.controleAlimentoValidadeMapper.toDto(result.get());
         }else{
             throw new RuntimeException("Recurso não encontrado.");
         }
     }
 
-    public ControleAlimentoValidadeDTO save(ControleAlimentoValidadeDTO controleAlimentoValidadeDTO){
-        ControleAlimentoValidade controleAlimentoValidade = this.controleAlimentoValidadeMapper.toEntity(controleAlimentoValidadeDTO);
+    public ControleAlimentoValidadeRespDTO save(ControleAlimentoValidadeReqDTO controleAlimentoValidadeReqDTO){
+        ControleAlimentoValidade controleAlimentoValidade = this.controleAlimentoValidadeMapper.toEntity(controleAlimentoValidadeReqDTO);
         controleAlimentoValidade = this.controleAlimentoValidadeRepository.save(controleAlimentoValidade);
-        return this.controleAlimentoValidadeMapper.toDTO(controleAlimentoValidade);
+        return this.controleAlimentoValidadeMapper.toDto(controleAlimentoValidade);
     }
 
-    public ControleAlimentoValidadeDTO update(Long id, ControleAlimentoValidadeDTO controleAlimentoValidadeDTO){
-       ControleAlimentoValidade controleAlimentoValidade = this.controleAlimentoValidadeMapper.toEntity(controleAlimentoValidadeDTO);
+    public ControleAlimentoValidadeRespDTO update(Long id, ControleAlimentoValidadeReqDTO controleAlimentoValidadeReqDTO){
+       ControleAlimentoValidade controleAlimentoValidade = this.controleAlimentoValidadeMapper.toEntity(controleAlimentoValidadeReqDTO);
         Optional<ControleAlimentoValidade> result = this.controleAlimentoValidadeRepository.findById(id);
         if (result.isPresent()){
             controleAlimentoValidade.setId(id);
-            return this.controleAlimentoValidadeMapper.toDTO(this.controleAlimentoValidadeRepository.save(controleAlimentoValidade));
+            return this.controleAlimentoValidadeMapper.toDto(this.controleAlimentoValidadeRepository.save(controleAlimentoValidade));
         }else {
             throw  new RuntimeException("Resurso não encontrado.");
         }

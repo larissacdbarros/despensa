@@ -1,8 +1,9 @@
 package br.com.despensa.service;
 
 import br.com.despensa.mapper.ListaComprasMapper;
-import br.com.despensa.model.dto.ListaComprasDTO;
-import br.com.despensa.model.entity.ListaCompras;
+import br.com.despensa.model.dto.ListaComprasReqDTO;
+import br.com.despensa.model.dto.ListaComprasRespDTO;
+import br.com.despensa.model.entity.ListaCompra;
 import br.com.despensa.repository.ListaComprasRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -17,39 +18,39 @@ public class ListaComprasService {
     private final ListaComprasRepository listaComprasRepository;
     private final ListaComprasMapper listaComprasMapper;
 
-    public List<ListaComprasDTO> getAll(){
-         List<ListaCompras> listaCompraslist = this.listaComprasRepository.findAll();
-         return this.listaComprasMapper.toDTO(listaCompraslist);
+    public List<ListaComprasRespDTO> getAll(){
+         List<ListaCompra> listaCompraslist = this.listaComprasRepository.findAll();
+         return this.listaComprasMapper.toDto(listaCompraslist);
     }
 
-    public ListaComprasDTO getById(Long id){
-        Optional<ListaCompras> result = this.listaComprasRepository.findById(id);
+    public ListaComprasRespDTO getById(Long id){
+        Optional<ListaCompra> result = this.listaComprasRepository.findById(id);
         if (result.isPresent()){
-            return this.listaComprasMapper.toDTO(result.get());
+            return this.listaComprasMapper.toDto(result.get());
         }else {
             throw new RuntimeException("Recurso não encontrado");
         }
     }
 
-    public ListaComprasDTO save(ListaComprasDTO listaComprasDTO){
-        ListaCompras listaCompras = this.listaComprasMapper.toEntity(listaComprasDTO);
+    public ListaComprasRespDTO save(ListaComprasReqDTO listaComprasReqDTO){
+        ListaCompra listaCompras = this.listaComprasMapper.toEntity(listaComprasReqDTO);
         listaCompras = this.listaComprasRepository.save(listaCompras);
-        return this.listaComprasMapper.toDTO(listaCompras);
+        return this.listaComprasMapper.toDto(listaCompras);
     }
 
-    public ListaComprasDTO update(Long id,ListaComprasDTO listaComprasDTO){
-        ListaCompras listaCompras = this.listaComprasMapper.toEntity(listaComprasDTO);
-        Optional<ListaCompras> result = this.listaComprasRepository.findById(id);
+    public ListaComprasRespDTO update(Long id, ListaComprasReqDTO listaComprasReqDTO){
+        ListaCompra listaCompra = this.listaComprasMapper.toEntity(listaComprasReqDTO);
+        Optional<ListaCompra> result = this.listaComprasRepository.findById(id);
         if (result.isPresent()){
-            listaCompras.setId(id);
-            return this.listaComprasMapper.toDTO(listaCompras);
+            listaCompra.setId(id);
+            return this.listaComprasMapper.toDto(listaCompra);
         }else{
             throw  new RuntimeException("Recurso não encontrado");
         }
     }
 
     public void delete(Long id){
-        Optional<ListaCompras> result = this.listaComprasRepository.findById(id);
+        Optional<ListaCompra> result = this.listaComprasRepository.findById(id);
         if (result.isPresent()){
             this.listaComprasRepository.delete(result.get());
         }else {

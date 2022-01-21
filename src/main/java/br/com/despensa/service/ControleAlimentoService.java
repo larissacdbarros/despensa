@@ -1,9 +1,8 @@
 package br.com.despensa.service;
 
 import br.com.despensa.mapper.ControleAlimentoMapper;
-import br.com.despensa.model.dto.AlimentoDTO;
-import br.com.despensa.model.dto.ControleAlimentoDTO;
-import br.com.despensa.model.entity.Alimento;
+import br.com.despensa.model.dto.ControleAlimentoReqDTO;
+import br.com.despensa.model.dto.ControleAlimentoRespDTO;
 import br.com.despensa.model.entity.ControleAlimento;
 import br.com.despensa.repository.ControleAlimentoRepository;
 import lombok.RequiredArgsConstructor;
@@ -20,33 +19,33 @@ public class ControleAlimentoService {
     private final ControleAlimentoRepository controleAlimentoRepository;
     private final ControleAlimentoMapper controleAlimentoMapper;
 
-    public List<ControleAlimentoDTO> getAll() {
+    public List<ControleAlimentoRespDTO> getAll() {
         List<ControleAlimento> controleAlimentoList = this.controleAlimentoRepository.findAll();
-        return this.controleAlimentoMapper.toDTO(controleAlimentoList);
+        return this.controleAlimentoMapper.toDto(controleAlimentoList);
     }
 
-    public ControleAlimentoDTO getById(Long id) {
+    public ControleAlimentoRespDTO getById(Long id) {
         Optional<ControleAlimento> result = this.controleAlimentoRepository.findById(id);
         if (result.isPresent()) {
-            return this.controleAlimentoMapper.toDTO(result.get());
+            return this.controleAlimentoMapper.toDto(result.get());
         } else {
             throw new RuntimeException("Recurso não encontrado.");
         }
     }
 
     @Transactional
-    public ControleAlimentoDTO save(ControleAlimentoDTO controleAlimentoDTO) {
+    public ControleAlimentoRespDTO save(ControleAlimentoReqDTO controleAlimentoDTO) {
         ControleAlimento controleAlimento = this.controleAlimentoMapper.toEntity(controleAlimentoDTO);
         controleAlimento = this.controleAlimentoRepository.save(controleAlimento);
-        return this.controleAlimentoMapper.toDTO(controleAlimento);
+        return this.controleAlimentoMapper.toDto(controleAlimento);
     }
 
-    public ControleAlimentoDTO update(Long id, ControleAlimentoDTO controleAlimentoDTO) {
+    public ControleAlimentoRespDTO update(Long id, ControleAlimentoReqDTO controleAlimentoDTO) {
         ControleAlimento controleAlimento = this.controleAlimentoMapper.toEntity(controleAlimentoDTO);
         Optional<ControleAlimento> result = this.controleAlimentoRepository.findById(id);
         if (result.isPresent()) {
             controleAlimento.setId(id);
-            return this.controleAlimentoMapper.toDTO(this.controleAlimentoRepository.save(controleAlimento));
+            return this.controleAlimentoMapper.toDto(this.controleAlimentoRepository.save(controleAlimento));
         } else {
             throw new RuntimeException("Recurso não encontrado.");
         }

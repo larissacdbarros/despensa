@@ -1,6 +1,7 @@
 package br.com.despensa.model.entity;
 
 
+import br.com.despensa.utils.Constants;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -8,25 +9,25 @@ import lombok.NoArgsConstructor;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "TB_ALIMENTOS", schema = "DESPENSA")
+@Table(name = "TB_ALIMENTO", schema = Constants.SCHEMA)
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 public class Alimento {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq_alimento")
-    @SequenceGenerator(name = "seq_alimento", sequenceName = "seq_alimento")
-    @Column(name = "ID")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id_alimento")
     private Long id;
 
     @OneToOne(mappedBy = "alimento")
     private ControleAlimento controleAlimento;
 
-    @Column(name = "NOME")
+    @Column(name = "DS_NOME")
     private String nome;
 
-    @Column(name = "GRAMATURA")
+    @Column(name = "QTD_GRAMATURA")
     private Double gramatura;
+
 
 }

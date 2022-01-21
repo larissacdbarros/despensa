@@ -13,10 +13,10 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @ApiModel(value = "ListaDeComprasDTO", description = "Contém a lista de alimentos a serem comprados.")
-public class ListaComprasDTO {
+public class ListaComprasReqDTO {
 
-    @ApiModelProperty(value = "Id da Lista de Compras.")
-    private Long id;
+//    @ApiModelProperty(value = "Id da Lista de Compras.")
+//    private Long id;
 
     @ApiModelProperty(value = "Lista de Alimentos.")
     private List<ControleAlimento> controlesAlimentos;

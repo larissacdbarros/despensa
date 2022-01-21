@@ -1,21 +1,12 @@
 package br.com.despensa.mapper;
 
-import br.com.despensa.model.dto.AlimentoDTO;
-import br.com.despensa.model.dto.ListaComprasDTO;
-import br.com.despensa.model.entity.Alimento;
-import br.com.despensa.model.entity.ListaCompras;
+import br.com.despensa.model.dto.ListaComprasReqDTO;
+import br.com.despensa.model.dto.ListaComprasRespDTO;
+import br.com.despensa.model.entity.ListaCompra;
 import org.mapstruct.Mapper;
+import org.mapstruct.ReportingPolicy;
 
-import java.util.List;
+@Mapper(componentModel = "spring", unmappedSourcePolicy = ReportingPolicy.IGNORE)
+public interface ListaComprasMapper extends BaseMapper<ListaCompra, ListaComprasReqDTO, ListaComprasRespDTO>{
 
-@Mapper(componentModel = "spring")
-public interface ListaComprasMapper {
-
-    ListaCompras toEntity(ListaComprasDTO listaComprasDTO);
-
-    ListaComprasDTO toDTO(ListaCompras listaCompras);
-
-    List<ListaCompras> toEntity(List<ListaComprasDTO> listaComprasDTOList);
-
-    List<ListaComprasDTO> toDTO(List<ListaCompras> listaComprasList);
 }
